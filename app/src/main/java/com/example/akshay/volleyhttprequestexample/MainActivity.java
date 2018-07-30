@@ -21,7 +21,8 @@ import java.util.Map;
 /*
 This is an HTTP Request that sends the destination to the web-server and receives the ArcGIS output.
 This program is designed for the UT Dallas indoor-navigation system.
-This program was coded by Michael Kasman on 7/29/2018.
+This program was coded by Akshay Durvasula on 7/29/2018.
+hi
  */
 
 public class MainActivity extends AppCompatActivity {
