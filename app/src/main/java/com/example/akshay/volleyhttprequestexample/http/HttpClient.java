@@ -28,6 +28,8 @@ public class HttpClient {
     // error messages
     public static final String CONNECTION_ERROR = "An error occurred with " +
             "the server...";
+    public static final String COULD_NOT_ENCODE_TO_BASE_64 = "Could not " +
+            "encode to base 64";
 
     // HTTP params
     public static final String AUTHORIZATION = "Authorization";
@@ -110,7 +112,7 @@ public class HttpClient {
             return BASIC_ + encodeToBase64(user + COLON + pass);
         } catch (UnsupportedEncodingException e) {
             if (debug) {
-                Log.d(TAG, "getAuthString(...) – Could not encode to base 64");
+                Log.d(TAG, COULD_NOT_ENCODE_TO_BASE_64);
             }
             e.printStackTrace();
         }
