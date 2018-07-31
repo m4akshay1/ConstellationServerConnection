@@ -28,7 +28,7 @@ hi
 public class MainActivity extends AppCompatActivity {
 
     //URL to the web-server, change it to your web-server's URL
-    private String serverURL = "http://10.0.2.2/";
+    private String serverURL = "http://ecsclark18.utdallas.edu";
     //a variable to hold the parsed path data from ArcGIS
     ArrayList<String[]> parsedPathData = new ArrayList<String[]>();
 
