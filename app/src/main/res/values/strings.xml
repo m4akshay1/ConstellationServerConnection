@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VolleyHTTPRequestExample</string>
+    <string name="send_destination">Send Destination</string>
+    <string name="get_cmx_coordinates">Get CMX Coordinates</string>
 </resources>
