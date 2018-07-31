@@ -7,17 +7,31 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/sendDestinationBTN"
+        android:id="@+id/send_destination_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Send Destination"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/send_destination"
+        app:layout_constraintBottom_toTopOf="@+id/cmx_request_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/cmx_request_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/get_cmx_coordinates"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/send_destination_button" />
 
 </android.support.constraint.ConstraintLayout>
