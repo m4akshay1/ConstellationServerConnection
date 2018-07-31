@@ -55,18 +55,27 @@ public class CmxCaller {
         request(context, serverUrl, CLIENTS, ipAddress, user, pass);
     }
 
+    /**
+     * Listens for a response. Once the response has been retrieved,
+     * the instructions provided in onResponse(...) will be carried out.
+     * @param httpRequestQueue
+     * @return An instance of a response listener, as specified by this method
+     */
     private static Response.Listener<String> getResponseListener(
             final RequestQueue httpRequestQueue) {
         return new Response.Listener<String>() {
+
             @Override
             public void onResponse(String response) {
                 try {
+                    // TODO: grab the response here and carry out what's needed
                     UiService.printString(response);
                 } catch (Exception error) {
                     error.printStackTrace();
                     httpRequestQueue.stop();
                 }
             }
+
         };
     }
 
@@ -84,9 +93,9 @@ public class CmxCaller {
             Response.ErrorListener errorListener, final String auth) {
         Map<String, String> params = new HashMap<String, String>();
         Map<String, String> headers = new HashMap<String, String>();
-        params.put(HttpClient.AUTHENTICATION, auth);
+        headers.put(HttpClient.AUTHORIZATION, auth);
         headers.put(HttpClient.CONTENT_TYPE, HttpClient.APP_JSON);
-        return HttpClient.getStringRequest(url, responseListener,
+        return HttpClient.newStringGetRequest(url, responseListener,
                 errorListener, params, headers);
     }
 

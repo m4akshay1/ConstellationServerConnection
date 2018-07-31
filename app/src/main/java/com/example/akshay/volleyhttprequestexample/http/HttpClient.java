@@ -3,6 +3,7 @@ package com.example.akshay.volleyhttprequestexample.http;
 
 import android.content.Context;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -20,19 +21,44 @@ import java.util.Map;
  */
 public class HttpClient {
 
+    private static boolean debug = true;
+
+    private static final String TAG = "HttpClient";
+
     // error messages
-    public static final String CONNECTION_ERROR = "An error occurred with the server...";
+    public static final String CONNECTION_ERROR = "An error occurred with " +
+            "the server...";
 
     // HTTP params
-    public static final String AUTHENTICATION = "Authentication";
+    public static final String AUTHORIZATION = "Authorization";
     public static final String CONTENT_TYPE = "Content-Type";
-    public static final String APP_X_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded";
+    public static final String APP_X_WWW_FORM_URLENCODED = "application/" +
+            "x-www-form-urlencoded";
     public static final String APP_JSON = "application/json";
     public static final String BASIC_ = "Basic ";
 
     // common strings
     public static final String COLON = ":";
     public static final String UTF_8 = "UTF-8";
+
+    public static StringRequest newStringPostRequest(String url,
+                                   Response.Listener<String> responseListener,
+                                   Response.ErrorListener errorListener,
+                                   final Map<String, String> params,
+                                   final Map<String, String> headers) {
+        return getStringRequest(url, responseListener, errorListener,
+                params, headers, Request.Method.POST);
+    }
+
+
+    public static StringRequest newStringGetRequest(String url,
+                                   Response.Listener<String> responseListener,
+                                   Response.ErrorListener errorListener,
+                                   final Map<String, String> params,
+                                   final Map<String, String> headers) {
+        return getStringRequest(url, responseListener, errorListener,
+                params, headers, Request.Method.GET);
+    }
 
     /**
      *
@@ -41,14 +67,15 @@ public class HttpClient {
      * @param errorListener
      * @param params Map<String, String> object containing HTTP parameters
      * @param headers Map<String, String> object containing HTTP headers
+     * @param requestMethod int from Request.Method to set method (GET/POST)
      * @return
      */
     public static StringRequest getStringRequest(String url,
             Response.Listener<String> responseListener,
             Response.ErrorListener errorListener,
             final Map<String, String> params,
-            final Map<String, String> headers) {
-        return new StringRequest(Request.Method.POST, url, responseListener,
+            final Map<String, String> headers, int requestMethod) {
+        return new StringRequest(requestMethod, url, responseListener,
                 errorListener) {
 
             @Override
@@ -56,7 +83,6 @@ public class HttpClient {
                 return params;
             }
 
-            //header values to send to the web-server
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 return headers;
@@ -83,12 +109,16 @@ public class HttpClient {
         try {
             return BASIC_ + encodeToBase64(user + COLON + pass);
         } catch (UnsupportedEncodingException e) {
+            if (debug) {
+                Log.d(TAG, "getAuthString(...) – Could not encode to base 64");
+            }
             e.printStackTrace();
         }
         return BASIC_;
     }
 
-    public static String encodeToBase64(String str) throws UnsupportedEncodingException {
+    public static String encodeToBase64(String str)
+            throws UnsupportedEncodingException {
         return Base64.encodeToString(str.getBytes(UTF_8), Base64.DEFAULT);
     }
 

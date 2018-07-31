@@ -15,11 +15,13 @@ import com.example.akshay.volleyhttprequestexample.services.CmxCaller;
 import java.util.ArrayList;
 
 /**
- *
+ * A simple prototype for the UT Dallas indoor-navigation system, which
+ * tests the app's ability to properly authenticate, request data, and
+ * parse the response.
  */
 public class MainActivity extends AppCompatActivity {
 
-    private final String cmxApiUrl = "cmxproxy01.utdallas.edu/api";
+    private final String cmxApiUrl = "http://cmxproxy01.utdallas.edu/api";
     private final String arcGisApiUrl = "10.0.2.2";
     private final String arcGisApiRoute = "index.php";
 
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setVariables() {
         roomNumberDestination = "2.326";
+        // TODO: set the following values
         ipAddress = "";
         cmxUser = "";
         cmxPass = "";

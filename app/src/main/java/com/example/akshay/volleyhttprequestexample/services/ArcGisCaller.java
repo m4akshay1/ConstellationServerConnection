@@ -78,7 +78,7 @@ public class ArcGisCaller {
         params.put(DESTINATION, roomNumberDestination);
         headers.put(HttpClient.CONTENT_TYPE,
                 HttpClient.APP_X_WWW_FORM_URLENCODED);
-        return HttpClient.getStringRequest(url, responseListener,
+        return HttpClient.newStringPostRequest(url, responseListener,
                 errorListener, params, headers);
     }
 
