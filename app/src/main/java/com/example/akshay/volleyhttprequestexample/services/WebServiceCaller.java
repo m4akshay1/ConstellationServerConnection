@@ -7,6 +7,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.akshay.volleyhttprequestexample.http.AsyncResponse;
 import com.example.akshay.volleyhttprequestexample.http.HttpClient;
 
 import java.util.HashMap;
@@ -25,7 +26,8 @@ public class WebServiceCaller {
                                String from,
                                String to,
                                boolean stairs,
-                               boolean elevators) {
+                               boolean elevators,
+                               AsyncResponse asyncResponse) {
         // declare
         String webServiceQuery;
         RequestQueue requestQueue;
@@ -35,7 +37,7 @@ public class WebServiceCaller {
         // define
         webServiceQuery = getWebServiceQuery(serverUrl, route);
         requestQueue = Volley.newRequestQueue(context);
-        responseListener = getResponseListener(requestQueue);
+        responseListener = getResponseListener(requestQueue, asyncResponse);
         errorListener = HttpClient.getResponseErrorListener(context,
                 requestQueue);
         cmxApiCallRequest = getApiCallRequest(webServiceQuery, responseListener,
@@ -51,14 +53,14 @@ public class WebServiceCaller {
      * @return An instance of a response listener, as specified by this method
      */
     private static Response.Listener<String> getResponseListener(
-            final RequestQueue httpRequestQueue) {
+            final RequestQueue httpRequestQueue,
+            final AsyncResponse asyncResponse) {
         return new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 try {
-                    // TODO: grab the response here and carry out what's needed
-                    UiService.printString(response);
+                    asyncResponse.returnResponse(response);
                 } catch (Exception error) {
                     error.printStackTrace();
                     httpRequestQueue.stop();

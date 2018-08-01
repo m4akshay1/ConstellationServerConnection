@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.akshay.volleyhttprequestexample.http.AsyncResponse;
 import com.example.akshay.volleyhttprequestexample.services.ArcGisCaller;
 import com.example.akshay.volleyhttprequestexample.services.CmxCaller;
+import com.example.akshay.volleyhttprequestexample.services.UiService;
 import com.example.akshay.volleyhttprequestexample.services.WebServiceCaller;
 
 import java.util.ArrayList;
@@ -123,7 +125,16 @@ public class MainActivity extends AppCompatActivity {
     private void makeWebServiceApiCall(String baseUrl, String route,
                                        String from, String to, boolean stairs,
                                        boolean elevators) {
-        WebServiceCaller.request(this, baseUrl, route, from, to, stairs, elevators);
+        AsyncResponse asyncResponse = new AsyncResponse() {
+
+            @Override
+            public void returnResponse(String result) {
+                UiService.printString(result);
+            }
+
+        };
+        WebServiceCaller.request(this, baseUrl, route, from, to, stairs,
+                elevators, asyncResponse);
     }
 
     public ArrayList<String[]> getParsedPathData() {
