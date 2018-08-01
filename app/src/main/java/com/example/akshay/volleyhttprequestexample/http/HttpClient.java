@@ -90,6 +90,10 @@ public class HttpClient {
                 return headers;
             }
 
+            @Override
+            protected Map<String, String> getPostParams() throws AuthFailureError {
+                return params;
+            }
         };
     }
 

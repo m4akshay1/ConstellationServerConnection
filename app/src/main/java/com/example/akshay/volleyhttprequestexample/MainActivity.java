@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.example.akshay.volleyhttprequestexample.services.ArcGisCaller;
 import com.example.akshay.volleyhttprequestexample.services.CmxCaller;
+import com.example.akshay.volleyhttprequestexample.services.WebServiceCaller;
 
 import java.util.ArrayList;
 
@@ -21,12 +22,10 @@ import java.util.ArrayList;
  */
 public class MainActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
     //URL to the web-server, change it to your web-server's URL
     private String serverURL = "http://ecsclark18.utdallas.edu";
     //a variable to hold the parsed path data from ArcGIS
-    ArrayList<String[]> parsedPathData = new ArrayList<String[]>();
-=======
+    //ArrayList<String[]> parsedPathData = new ArrayList<String[]>();
     private final String cmxApiUrl = "http://cmxproxy01.utdallas.edu/api";
     private final String arcGisApiUrl = "10.0.2.2";
     private final String arcGisApiRoute = "index.php";
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String[]> parsedPathData = new ArrayList<String[]>();
     private Button sendDestinationButton;
     private Button cmxRequestButton;
->>>>>>> 0da08a8ea383a32927af9b9d56dce5f47f61e081
+    private Button webServiceRequestButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +58,13 @@ public class MainActivity extends AppCompatActivity {
         // TODO: set the following values
         ipAddress = "";
         cmxUser = "";
-        cmxPass = "";
+        cmxPass = "?";
     }
 
     private void setupComponents() {
         sendDestinationButton = findViewById(R.id.send_destination_button);
         cmxRequestButton = findViewById(R.id.cmx_request_button);
+        webServiceRequestButton = findViewById(R.id.web_service_request_button);
     }
 
     private void setButtonOnClickListeners() {
@@ -81,6 +81,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getCmxData(cmxApiUrl, ipAddress, cmxUser, cmxPass);
+            }
+
+        });
+        webServiceRequestButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                makeWebServiceApiCall("https://ecsclark18.utdallas.edu/",
+                        "index.php", "2.114", "2.326", true, true);
             }
 
         });
@@ -111,4 +120,17 @@ public class MainActivity extends AppCompatActivity {
                 user, pass);
     }
 
+    private void makeWebServiceApiCall(String baseUrl, String route,
+                                       String from, String to, boolean stairs,
+                                       boolean elevators) {
+        WebServiceCaller.request(this, baseUrl, route, from, to, stairs, elevators);
+    }
+
+    public ArrayList<String[]> getParsedPathData() {
+        return parsedPathData;
+    }
+
+    public void setParsedPathData(ArrayList<String[]> parsedPathData) {
+        this.parsedPathData = parsedPathData;
+    }
 }
