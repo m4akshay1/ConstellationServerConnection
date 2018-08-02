@@ -4,10 +4,14 @@
 // Forked and modified by Ron Rihoo on 7/30/2018
 package com.example.akshay.volleyhttprequestexample;
 
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.akshay.volleyhttprequestexample.services.ArcGisCaller;
 import com.example.akshay.volleyhttprequestexample.services.CmxCaller;
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String[]> parsedPathData = new ArrayList<String[]>();
     private Button sendDestinationButton;
     private Button cmxRequestButton;
+    private TextView listDropTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupComponents() {
         sendDestinationButton = findViewById(R.id.send_destination_button);
         cmxRequestButton = findViewById(R.id.cmx_request_button);
+        listDropTextView = findViewById(R.id.list_drop_textview);
     }
 
     private void setButtonOnClickListeners() {
@@ -74,6 +80,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getCmxData(cmxApiUrl, ipAddress, cmxUser, cmxPass);
+            }
+
+        });
+        listDropTextView.setOnClickListener(new View.OnClickListener() {
+
+            boolean isExpanded = true;
+
+            @Override
+            public void onClick(View v) {
+                AppBarLayout appBarLayout = findViewById(R.id.content_app_bar_layout);
+                isExpanded = !isExpanded;
+                appBarLayout.setExpanded(isExpanded);
             }
 
         });

@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#309f30</color>
     <color name="colorAccent">#fc8312</color>
     <color name="toolbarColor">#348608</color>
+    <color name="list_content_layout_color">#ff9900</color>
+    <color name="listDropTextColor">#FFFFFF</color>
+    <color name="sampleItemTextColor">#007912</color>
 </resources>
