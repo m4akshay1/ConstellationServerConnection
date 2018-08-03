@@ -153,4 +153,5 @@ public class MainActivity extends AppCompatActivity {
     public void setParsedPathData(ArrayList<String[]> parsedPathData) {
         this.parsedPathData = parsedPathData;
     }
+
 }
