@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:overScrollMode="never"
         android:fitsSystemWindows="true"
-        app:expanded="true">
+        app:expanded="false">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/content_collapsing_toolbar"

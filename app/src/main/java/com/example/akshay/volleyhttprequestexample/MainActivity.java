@@ -85,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         });
         listDropTextView.setOnClickListener(new View.OnClickListener() {
 
-            boolean isExpanded = true;
-            
+            boolean isExpanded = false;
+
             AppBarLayout appBarLayout = findViewById(R.id.content_app_bar_layout);
 
             @Override
