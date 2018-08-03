@@ -3,4 +3,9 @@
     <string name="send_destination">Send Destination</string>
     <string name="get_cmx_coordinates">Get CMX Coordinates</string>
     <string name="make_web_service_api_call">Make Web Service API Call</string>
+    <string name="drop_list">Drop List</string>
+    <string name="item_1">Item 1</string>
+    <string name="item_2">Item 2</string>
+    <string name="item_3">Item 3</string>
+    <string name="item_4">Item 4</string>
 </resources>
