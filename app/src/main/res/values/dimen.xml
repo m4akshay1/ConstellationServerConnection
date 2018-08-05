@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="listDropTextSize">32sp</dimen>
+    <dimen name="sampleItemTextSize">20sp</dimen>
+    <dimen name="sampleItemTextPadding">10sp</dimen>
+</resources>
